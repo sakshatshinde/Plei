@@ -34,12 +34,11 @@ def getSteamIDs(filePath):
     pattern = "*.acf"
     for entry in listOfFiles:
         if fnmatch.fnmatch(entry, pattern):
-            acfFile = open(filePath + entry)
-            STEAM_DATA = acf.load(acfFile, wrapper = OrderedDict)
-            acfFile.close()
-            gameName = nested_lookup('name', STEAM_DATA)
-            gameAppID = nested_lookup('appid', STEAM_DATA)
-            gameAdd(gameName[0], gameAppID[0], GameStore.STEAM) #gameName and gameAppID are lists with 1 element only
+            with open(filePath + entry) as acfFile:
+                STEAM_DATA = acf.load(acfFile, wrapper = OrderedDict)
+                gameName = nested_lookup('name', STEAM_DATA)
+                gameAppID = nested_lookup('appid', STEAM_DATA)
+                gameAdd(gameName[0], gameAppID[0], GameStore.STEAM) #gameName and gameAppID are lists with 1 element only
             
 
 # Alternative method to get the appIDs for the games
