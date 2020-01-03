@@ -35,12 +35,12 @@ def getSteamIDs(filePath):
     for entry in listOfFiles:
         if fnmatch.fnmatch(entry, pattern):
             acfFile = open(filePath + entry)
-            #print(filePath + entry)
             STEAM_DATA = acf.load(acfFile, wrapper = OrderedDict)
             gameName = nested_lookup('name', STEAM_DATA)
             gameAppID = nested_lookup('appid', STEAM_DATA)
             gameAdd(gameName[0], gameAppID[0], GameStore.STEAM) #gameName and gameAppID are lists with 1 element only
-
+            acfFile.close()
+            
 # Alternative method to get the appIDs for the games
 # extract the STEAM_ID from that file name
 # The regex re.findall() returns ['STEAM_ID'] so it is a list with just 1 value in it at the 0th position
@@ -57,9 +57,9 @@ def getSteamIDs(filePath):
             STEAM_ID.append(extractedSteamID[0])
 """
           
-#path = 'D:\\SteamLibrary\\steamapps\\'
-#getSteamIDs(path)
+path = 'D:\\SteamLibrary\\steamapps\\'
+getSteamIDs(path)
 #print(STEAM_ID)
 #gameAdd("Doki Doki", 698780, GameStore.EGS)
-#print(GAME_LIST_MASTER)
+print(GAME_LIST_MASTER)
 #D:\SteamLibrary\steamapps
