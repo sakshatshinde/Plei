@@ -50,9 +50,6 @@ def getSteamIDs(filePath):
     pattern = "*.acf"
     for entry in listOfFiles:
         if fnmatch.fnmatch(entry, pattern):
-            global STEAM_DATA
-            acfFile = open(filePath + '/' + entry)
-            STEAM_DATA = acf.load(acfFile, wrapper = OrderedDict)
             extractedSteamID = re.findall(r'\d+', str(entry)) # '\d' finds any number (a digit)
             STEAM_ID.append(extractedSteamID[0])
 """
