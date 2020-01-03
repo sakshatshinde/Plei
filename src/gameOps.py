@@ -33,4 +33,4 @@ def getSteamIDs(filePath):
 #print(STEAM_ID)
 #gameAddSteam("Doki Doki", 698780, "Steam")
 #print(GAME_LIST_MASTER)
-# D:\SteamLibrary\steamapps
+#D:\SteamLibrary\steamapps
