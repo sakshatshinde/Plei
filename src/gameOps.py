@@ -1,9 +1,11 @@
 from gameList import GameList, GameStore
 import os, fnmatch, re
+from steamfiles import acf 
+from collections import OrderedDict
+from nested_lookup import nested_lookup
 
-#Master game list for all the games regardless of the launcher
+# Master game list for all the games regardless of the launcher
 GAME_LIST_MASTER = {}
-STEAM_ID = []
 
 '''
 Add steam games to the main list
@@ -23,19 +25,40 @@ def gameAdd(name, gameId, gameStore: GameStore):
 '''
 Get the steamapps/ folder path
 The steamapps/ folder contains appmanifest_STEAM-ID.acf files
-extract the STEAM_ID from that file name
-The regex re.findall() returns ['STEAM_ID'] so it is a list with just 1 value in it at the 0th position
+find all files with .acf extension
+then open the .acf files, extract the name and the appID from the files
+use gameAdd to add the game
 '''
-
 def getSteamIDs(filePath):
     listOfFiles = os.listdir(filePath)
     pattern = "*.acf"
     for entry in listOfFiles:
         if fnmatch.fnmatch(entry, pattern):
+            acfFile = open(filePath + entry)
+            #print(filePath + entry)
+            STEAM_DATA = acf.load(acfFile, wrapper = OrderedDict)
+            gameName = nested_lookup('name', STEAM_DATA)
+            gameAppID = nested_lookup('appid', STEAM_DATA)
+            gameAdd(gameName[0], gameAppID[0], GameStore.STEAM) #gameName and gameAppID are lists with 1 element only
+
+# Alternative method to get the appIDs for the games
+# extract the STEAM_ID from that file name
+# The regex re.findall() returns ['STEAM_ID'] so it is a list with just 1 value in it at the 0th position
+"""
+def getSteamIDs(filePath):
+    listOfFiles = os.listdir(filePath)
+    pattern = "*.acf"
+    for entry in listOfFiles:
+        if fnmatch.fnmatch(entry, pattern):
+            global STEAM_DATA
+            acfFile = open(filePath + '/' + entry)
+            STEAM_DATA = acf.load(acfFile, wrapper = OrderedDict)
             extractedSteamID = re.findall(r'\d+', str(entry)) # '\d' finds any number (a digit)
             STEAM_ID.append(extractedSteamID[0])
-            
-#getSteamIDs(r"D:\SteamLibrary\steamapps")
+"""
+          
+#path = 'D:\\SteamLibrary\\steamapps\\'
+#getSteamIDs(path)
 #print(STEAM_ID)
 #gameAdd("Doki Doki", 698780, GameStore.EGS)
 #print(GAME_LIST_MASTER)
