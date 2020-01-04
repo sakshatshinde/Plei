@@ -1,12 +1,12 @@
 import enum
-class GameList:
+class Game:
     def __init__(self, name, gameId, gameStore):
         self.name = name 
         self.gameId = gameId
         self.gameStore = gameStore
 
 class GameStore(enum.Enum):
-    STEAM = "STEAM"
+    STEAM = "steam://rungameid/"
     EGS = "EGS"
     UPLAY = "UPLAY"
     ORIGIN = "ORIGIN"
