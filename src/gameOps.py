@@ -1,11 +1,13 @@
-from gameList import GameList, GameStore
-import os, fnmatch, re
+from gameList import Game, GameStore
+import os, fnmatch
 from steamfiles import acf 
 from collections import OrderedDict
 from nested_lookup import nested_lookup
 
 # Master game list for all the games regardless of the launcher
-GAME_LIST_MASTER = {}
+GAME_LIST_MASTER = {
+    'Villian' : ['12345', 'EGS'] #Test entry
+}
 
 '''
 Add steam games to the main list
@@ -17,9 +19,9 @@ gameStore.value is the value of the given variables in the GameStore class
 >we get the value of the EGS variable from the GameStore into -> the GAME_LIST_MASTER
 '''
 
-def gameAdd(name, gameId, gameStore: GameStore): 
-    game = GameList(name, gameId, gameStore.value)
-    GAME_LIST_MASTER[game.name] = [game.gameId, gameStore.value]
+def gameAdd(gameName, gameId, gameStore: GameStore): 
+    game = Game(gameName, gameId, gameStore.name)
+    GAME_LIST_MASTER[game.name] = [game.gameId, gameStore.name]
 
 
 '''
@@ -27,7 +29,7 @@ Get the steamapps/ folder path
 The steamapps/ folder contains appmanifest_STEAM-ID.acf files
 find all files with .acf extension
 then open the .acf files, extract the name and the appID from the files
-use gameAdd to add the game
+use gameAdd to add the game 
 '''
 def getSteamIDs(filePath):
     listOfFiles = os.listdir(filePath)
@@ -39,11 +41,52 @@ def getSteamIDs(filePath):
                 gameName = nested_lookup('name', STEAM_DATA)
                 gameAppID = nested_lookup('appid', STEAM_DATA)
                 gameAdd(gameName[0], gameAppID[0], GameStore.STEAM) #gameName and gameAppID are lists with 1 element only
-            
+
+
+
+'''
+Check if the game exists
+Return the gameID and game's store
+'''
+def gameSearch(game):
+    gameFound = nested_lookup(game, GAME_LIST_MASTER)
+    return gameFound
+
+
+'''
+gameInfo initiallu is a double list. Meaning gameInfo = [[gameId, gameStore]]
+[gameInfo] strips down the additional listt = [gameId, gameStore]
+gameObj is there to check the Game Store for the game so we can differentiate launch commands
+Eg: IF STEAM THEN CMD = "steam://rungameid/"
+This CMD is grabbed from the GameStore Enum by .value
+'''
+def launchGame(game):
+    try:
+        [gameInfo] = gameSearch(game)
+    except:
+        raise Exception('Check your game Name')
+    gameId  = gameInfo[0] 
+    gameStoreName = gameInfo[1]
+    gameObj = GameStore
+    if(gameStoreName == 'STEAM'):
+        launchStruc = gameObj.STEAM.value
+        os.startfile(launchStruc + str(gameId))
+    else:
+        print('Its not a steam game')
+       
+       
+#path = 'D:\\SteamLibrary\\steamapps\\'
+#getSteamIDs(path)
+#gameAdd("Doki Doki", 698780, GameStore.EGS)
+#print(GAME_LIST_MASTER)
+#print(nested_lookup('Audition Online', GAME_LIST_MASTER))
+#D:\SteamLibrary\steamapps
+#launchGame('Villian') 
 
 # Alternative method to get the appIDs for the games
 # extract the STEAM_ID from that file name
 # The regex re.findall() returns ['STEAM_ID'] so it is a list with just 1 value in it at the 0th position
+
 """
 def getSteamIDs(filePath):
     listOfFiles = os.listdir(filePath)
@@ -54,10 +97,4 @@ def getSteamIDs(filePath):
             STEAM_ID.append(extractedSteamID[0])
 """
           
-#path = 'D:\\SteamLibrary\\steamapps\\'
-#getSteamIDs(path)
-#print(STEAM_ID)
-#gameAdd("Doki Doki", 698780, GameStore.EGS)
-#print(GAME_LIST_MASTER)
-#print(nested_lookup('Audition Online', GAME_LIST_MASTER))
-#D:\SteamLibrary\steamapps
+
