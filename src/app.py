@@ -1,8 +1,5 @@
-import os, gameList
+if __name__ == "__main__":
+    pass
 
-# Shortcut launch location
-#TEST
-steamLink = 'steam://rungameid/'
-egsLink = 'com.epicgames.launcher://apps/'
-os.startfile(steamLink + '698780' )
+
 
