@@ -10,6 +10,5 @@ class GameStore(enum.Enum):
     EGS = "EGS"
     UPLAY = "UPLAY"
     ORIGIN = "ORIGIN"
-    GOG = "GOG"
     PIRATED = "PIRATED"
     
