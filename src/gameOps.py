@@ -5,9 +5,8 @@ from collections import OrderedDict
 from nested_lookup import nested_lookup
 
 # Master game list for all the games regardless of the launcher
-GAME_LIST_MASTER = {
-    'Villian' : ['12345', 'EGS'] #Test entry
-}
+GAME_LIST_MASTER = {}
+GAME_DIRS = {}
 
 '''
 Add steam games to the main list
@@ -23,6 +22,27 @@ def gameAdd(gameName, gameId, gameStore: GameStore):
     game = Game(gameName, gameId, gameStore.name)
     GAME_LIST_MASTER[game.name] = [game.gameId, gameStore.name]
 
+#For handling other stores than STEAM
+def storeDirectory(gameStore , storeDir) -> str:
+    if(gameStore == "ORIGIN"):
+        global originPath, uPlayPath, piratedPath
+        originPath = storeDir
+        #originPath = input('Input the PATH to origin directory: ')
+        GAME_DIRS[gameStore] = originPath
+        return(originPath)
+    if(gameStore == "UPLAY"):
+        uPlayPath = storeDir
+        #uPlayPath = input('Input the PATH to uPlay directory: ')
+        GAME_DIRS[gameStore] = uPlayPath
+        return(uPlayPath)
+    if(gameStore == "PIRATED"):
+        piratedPath = storeDir
+        #piratedPath = input('Input the PATH to Pirated Games directory')
+        GAME_DIRS[gameStore] = piratedPath
+        return(piratedPath)
+
+#storeDirectory('STEAM','C:\\Program Files (x86)\\Origin Games')
+#print(GAME_DIRS)
 
 '''
 Get the steamapps/ folder path
@@ -42,8 +62,6 @@ def getSteamIDs(filePath):
                 gameAppID = nested_lookup('appid', STEAM_DATA)
                 gameAdd(gameName[0], gameAppID[0], GameStore.STEAM) #gameName and gameAppID are lists with 1 element only
 
-
-
 '''
 Check if the game exists
 Return the gameID and game's store
@@ -52,9 +70,25 @@ def gameSearch(game):
     gameFound = nested_lookup(game, GAME_LIST_MASTER)
     return gameFound
 
+#Temp solution
+'''
+def getPath(gameStoreName):
+    if(gameStoreName == 'ORIGIN'):
+        originPath = input('Please enter your Origin librarie\'s path here')
+        return originPath
+    if(gameStoreName == 'UPLAY'):
+        uPlayPath = input('Please enter your UPLAY librarie\'s path here')
+        return uPlayPath
+    if(gameStoreName == 'PIRATED'):
+        pathToExe = input('Please input the PATH of your game\'s .exe file')
+        return pathToExe
+    else:
+        pass
+'''
+
 
 '''
-gameInfo initiallu is a double list. Meaning gameInfo = [[gameId, gameStore]]
+gameInfo initially is a double list. Meaning gameInfo = [[gameId, gameStore]]
 [gameInfo] strips down the additional listt = [gameId, gameStore]
 gameObj is there to check the Game Store for the game so we can differentiate launch commands
 Eg: IF STEAM THEN CMD = "steam://rungameid/"
@@ -68,20 +102,35 @@ def launchGame(game):
     gameId  = gameInfo[0] 
     gameStoreName = gameInfo[1]
     gameObj = GameStore
+
     if(gameStoreName == 'STEAM'):
         launchStruc = gameObj.STEAM.value
         os.startfile(launchStruc + str(gameId))
     else:
-        print('Its not a steam game')
+        print('Something went wrong')
+    '''
+    elif(gameStoreName == 'PIRATED'):
+        path = getPiratedPath('PIRATED')
+        os.startfile(path)
+    
+    elif(gameStoreName == 'ORIGIN'):
+        path = getPath('ORIGIN')
+        os.startfile(path)
+
+    elif(gameStoreName == 'UPLAY'):
+        path = getPath('UPLAY')
+        os.startfile(path)
+    '''
+    
        
        
 #path = 'D:\\SteamLibrary\\steamapps\\'
 #getSteamIDs(path)
-#gameAdd("Doki Doki", 698780, GameStore.EGS)
+#gameAdd("Apex Legends", 0, GameStore.ORIGIN)
 #print(GAME_LIST_MASTER)
 #print(nested_lookup('Audition Online', GAME_LIST_MASTER))
 #D:\SteamLibrary\steamapps
-#launchGame('Villian') 
+#launchGame('Apex Legends') 
 
 # Alternative method to get the appIDs for the games
 # extract the STEAM_ID from that file name
