@@ -10,22 +10,20 @@ GAME_LIST_MASTER = {}
 GAME_DIRS = {}
 
 '''
-Add steam games to the main list
 Possible gameStore values = STEAM, UPLAY, PIRATED, EGS, ORIGIN, GOG
 GameStore is an enum and the class has all the specified values : EGS, ORGIN etc
 gameStore: GameStore makes sure that the gameStore is of type GameStore
-gameStore.value is the value of the given variables in the GameStore class 
+gameStore.name is the key itself in the GameStore class 
 >so for example if we do gameAdd('doki doki', 123234, GameStore.EGS)
->we get the value of the EGS variable from the GameStore into -> the GAME_LIST_MASTER
+>we get "EGS" from the GameStore into -> the GAME_LIST_MASTER
 '''
 
 def gameAdd(gameName, gameId, gameStore: GameStore): 
     game = Game(gameName, gameId, gameStore.name)
     GAME_LIST_MASTER[game.name] = [game.gameId, gameStore.name]
-    
+    #gameAdd('Apex Legends', 4444, GameStore.ORIGIN)
+    #print(GAME_LIST_MASTER)
 
-gameAdd('Apex Legends', 4444, GameStore.ORIGIN)
-#print(GAME_LIST_MASTER)
 # Storing directories of game stores
 def storeDirectory(gameStore , storeDir) -> str:
     if(gameStore == "ORIGIN"):
@@ -49,8 +47,8 @@ def storeDirectory(gameStore , storeDir) -> str:
         GAME_DIRS[gameStore] = steamPath
         return(steamPath)
 
-#storeDirectory('STEAM','C:\\Program Files (x86)\\Origin Games')
-#print(GAME_DIRS)
+    #storeDirectory('STEAM','C:\\Program Files (x86)\\Origin Games')
+    #print(GAME_DIRS)
 
 '''
 Get the steamapps/ folder path
@@ -59,7 +57,7 @@ find all files with .acf extension
 then open the .acf files, extract the name and the appID from the files
 use gameAdd to add the game 
 '''
-def getSteamIDs(filePath):
+def getSteamIDs(filePath = 'D:\\SteamLibrary\\steamapps\\'):
     listOfFiles = os.listdir(filePath)
     pattern = "*.acf"
     for entry in listOfFiles:
@@ -69,6 +67,36 @@ def getSteamIDs(filePath):
                 gameName = nested_lookup('name', STEAM_DATA)
                 gameAppID = nested_lookup('appid', STEAM_DATA)
                 gameAdd(gameName[0], gameAppID[0], GameStore.STEAM) #gameName and gameAppID are lists with 1 element only
+
+
+'''
+Origin stores info about the installed games in the C:\\ProgamData....
+Inside Each game has its own folder with the same name as of the game
+There we have .msft files which we can grab and strip the names and use them as gameIds
+we use those gameIds with the cmd -> origin://launchgame/[gameId] to launch games later in launchGame()
+'''
+# LINK : https://gaming.stackexchange.com/questions/301777/find-uplay-origin-battle-net-game-id
+def getOriginIDs(filePath = 'C:\\ProgramData\\Origin\\LocalContent\\'):
+    pattern = "*.mfst"
+    gameName, gameId  = [], []
+    for root, dirs, files in os.walk("C:\\ProgramData\\Origin\\LocalContent"):
+        for dir in dirs:
+            gameName.append(dir)
+        for fileName in files:
+            if fnmatch.fnmatch(fileName, pattern):
+                fileName = fileName[:-5] 
+                gameId.append(fileName)
+
+    final = dict(zip(gameName, gameId ))
+    #print(final)
+    for game, gameId in final.items():
+        #print(game, '->' , gameId)
+        gameAdd(game, gameId, GameStore.ORIGIN)
+    #print(GAME_LIST_MASTER)
+                            
+    #getOriginIDs()
+    #getSteamIDs()
+    #print(GAME_LIST_MASTER)
 
 '''
 Check if the game exists
@@ -93,38 +121,31 @@ def launchGame(game):
         raise Exception('Check your game Name')
     gameId  = gameInfo[0] 
     gameStoreName = gameInfo[1]
-    gameObj = GameStore
 
     if(gameStoreName == 'STEAM'):
-        launchStruc = gameObj.STEAM.value
+        launchStruc = GameStore.STEAM.value
         os.startfile(launchStruc + str(gameId))
+
+    elif(gameStoreName == 'ORIGIN'):
+        launchStruc = GameStore.ORIGIN.value
+        os.startfile(launchStruc + str(gameId))
+        
     else:
         print('Something went wrong')
 
-    '''
-    elif(gameStoreName == 'PIRATED'):
-        path = getPiratedPath('PIRATED')
-        os.startfile(path)
-    
-    elif(gameStoreName == 'ORIGIN'):
-        path = getPath('ORIGIN')
-        os.startfile(path)
+    # launchGame('Apex')
 
-    elif(gameStoreName == 'UPLAY'):
-        path = getPath('UPLAY')
-        os.startfile(path)
-    '''
-    
-       
-  
-#path = 'D:\\SteamLibrary\\steamapps\\'
-#getSteamIDs(path)
-#gameAdd("Apex Legends", 0, GameStore.ORIGIN)
-#print(GAME_LIST_MASTER)
-#print(nested_lookup('Audition Online', GAME_LIST_MASTER))
-#D:\SteamLibrary\steamapps
-#launchGame('Apex Legends') 
 
+
+
+
+
+
+
+
+
+
+#---------------------------------------------------------------------------------------------
 # Alternative method to get the appIDs for the games
 # extract the STEAM_ID from that file name
 # The regex re.findall() returns ['STEAM_ID'] so it is a list with just 1 value in it at the 0th position
