@@ -1,12 +1,13 @@
 from gameList import Game, GameStore
-import os, fnmatch
+import os, fnmatch, shelve
 from steamfiles import acf 
 from collections import OrderedDict
 from nested_lookup import nested_lookup
 
 # Master game list for all the games regardless of the launcher
-GAME_LIST_MASTER = {}
-GAME_DIRS = {}
+global GAME_DIRS, GAME_LIST_MASTER
+GAME_LIST_MASTER = shelve.open("GAME_LIST_MASTER")
+GAME_DIRS = shelve.open("GAME_DIRS")
 
 '''
 Add steam games to the main list
@@ -21,25 +22,32 @@ gameStore.value is the value of the given variables in the GameStore class
 def gameAdd(gameName, gameId, gameStore: GameStore): 
     game = Game(gameName, gameId, gameStore.name)
     GAME_LIST_MASTER[game.name] = [game.gameId, gameStore.name]
+    
 
-#For handling other stores than STEAM
+gameAdd('Apex Legends', 4444, GameStore.ORIGIN)
+print(GAME_LIST_MASTER)
+# Storing directories of game stores
 def storeDirectory(gameStore , storeDir) -> str:
     if(gameStore == "ORIGIN"):
         global originPath, uPlayPath, piratedPath
         originPath = storeDir
-        #originPath = input('Input the PATH to origin directory: ')
         GAME_DIRS[gameStore] = originPath
         return(originPath)
+
     if(gameStore == "UPLAY"):
         uPlayPath = storeDir
-        #uPlayPath = input('Input the PATH to uPlay directory: ')
         GAME_DIRS[gameStore] = uPlayPath
         return(uPlayPath)
+
     if(gameStore == "PIRATED"):
         piratedPath = storeDir
-        #piratedPath = input('Input the PATH to Pirated Games directory')
         GAME_DIRS[gameStore] = piratedPath
         return(piratedPath)
+
+    if(gameStore == "STEAM"):
+        steamPath = storeDir
+        GAME_DIRS[gameStore] = steamPath
+        return(steamPath)
 
 #storeDirectory('STEAM','C:\\Program Files (x86)\\Origin Games')
 #print(GAME_DIRS)
@@ -70,22 +78,6 @@ def gameSearch(game):
     gameFound = nested_lookup(game, GAME_LIST_MASTER)
     return gameFound
 
-#Temp solution
-'''
-def getPath(gameStoreName):
-    if(gameStoreName == 'ORIGIN'):
-        originPath = input('Please enter your Origin librarie\'s path here')
-        return originPath
-    if(gameStoreName == 'UPLAY'):
-        uPlayPath = input('Please enter your UPLAY librarie\'s path here')
-        return uPlayPath
-    if(gameStoreName == 'PIRATED'):
-        pathToExe = input('Please input the PATH of your game\'s .exe file')
-        return pathToExe
-    else:
-        pass
-'''
-
 
 '''
 gameInfo initially is a double list. Meaning gameInfo = [[gameId, gameStore]]
@@ -108,6 +100,7 @@ def launchGame(game):
         os.startfile(launchStruc + str(gameId))
     else:
         print('Something went wrong')
+
     '''
     elif(gameStoreName == 'PIRATED'):
         path = getPiratedPath('PIRATED')
@@ -123,7 +116,8 @@ def launchGame(game):
     '''
     
        
-       
+GAME_LIST_MASTER.close()    
+GAME_DIRS.close()  
 #path = 'D:\\SteamLibrary\\steamapps\\'
 #getSteamIDs(path)
 #gameAdd("Apex Legends", 0, GameStore.ORIGIN)
