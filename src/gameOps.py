@@ -1,13 +1,13 @@
 from gameList import Game, GameStore
-import os, fnmatch, shelve
+import os, fnmatch #, shelve
 from steamfiles import acf 
 from collections import OrderedDict
 from nested_lookup import nested_lookup
 
 # Master game list for all the games regardless of the launcher
 global GAME_DIRS, GAME_LIST_MASTER
-GAME_LIST_MASTER = shelve.open("GAME_LIST_MASTER")
-GAME_DIRS = shelve.open("GAME_DIRS")
+GAME_LIST_MASTER = {}
+GAME_DIRS = {}
 
 '''
 Add steam games to the main list
@@ -25,7 +25,7 @@ def gameAdd(gameName, gameId, gameStore: GameStore):
     
 
 gameAdd('Apex Legends', 4444, GameStore.ORIGIN)
-print(GAME_LIST_MASTER)
+#print(GAME_LIST_MASTER)
 # Storing directories of game stores
 def storeDirectory(gameStore , storeDir) -> str:
     if(gameStore == "ORIGIN"):
@@ -116,8 +116,7 @@ def launchGame(game):
     '''
     
        
-GAME_LIST_MASTER.close()    
-GAME_DIRS.close()  
+  
 #path = 'D:\\SteamLibrary\\steamapps\\'
 #getSteamIDs(path)
 #gameAdd("Apex Legends", 0, GameStore.ORIGIN)
