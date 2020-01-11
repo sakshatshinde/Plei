@@ -29,7 +29,8 @@ root.resizable(FALSE, FALSE)
 root.eval('tk::PlaceWindow %s center' % root.winfo_pathname(root.winfo_id()))
 
 # Minimize button
-minIcon = PhotoImage(file = r'resources/minimize.png')
+minIcon = PhotoImage(file = r'resources/minus.png')
+minIcon = minIcon.subsample(20,20)
 minBtn = Button(
     root, 
     image = minIcon,  
@@ -38,10 +39,12 @@ minBtn = Button(
     activebackground = BG_VAL, 
     borderwidth = 0
 ) 
-minBtn.place(relx = 1, x =-35, y = 5, anchor = NE)
+minBtn.place(relx = 1, x = -45, y = 5, anchor = NE)
 
 # Close button
-closeIcon = PhotoImage(file = r'resources/error.png')
+closeIcon = PhotoImage(file = r'resources/close.png')
+#Resizing the image for the button to fit
+closeIcon = closeIcon.subsample(20,20)
 closeBtn = Button(
     root, 
     image = closeIcon , 
@@ -50,8 +53,7 @@ closeBtn = Button(
     activebackground = BG_VAL,
     borderwidth = 0
 ) 
-
-closeBtn.place(relx = 1, x =-6, y = 5, anchor = NE)
+closeBtn.place(relx = 1, x =-10, y = 5, anchor = NE)
 
 root.bind('<Map>', check_map) # added bindings to pass windows status to function
 root.bind('<Unmap>', check_map)
