@@ -19,6 +19,7 @@ def check_map(event): # apply override on deiconify.
     else:
         pass
 
+# Hover functions
 def onEnterMin(e):
     minBtn['background'] = '#424242'
 
@@ -37,6 +38,7 @@ root = Tk()
 # removes title bar 
 root.overrideredirect(True)
 
+# Window config
 root.configure(background = BG_VAL, height = 800, width = 1600)
 root.resizable(FALSE, FALSE)
 
@@ -82,10 +84,13 @@ closeBtn = Button(
 ) 
 closeBtn.place(relx = 1, x =-5, y = 5, anchor = NE)
 
+# Hover for buttons
 minBtn.bind("<Enter>", onEnterMin)
 minBtn.bind("<Leave>", onLeaveMin)
 closeBtn.bind("<Enter>", onEnterClose)
 closeBtn.bind("<Leave>", onLeaveClose)
-root.bind('<Map>', check_map) # added bindings to pass windows status to function
+
+# Added bindings to pass windows status to function : MAXIMIZE AND MINIMIZE
+root.bind('<Map>', check_map) 
 root.bind('<Unmap>', check_map)
 root.mainloop()
