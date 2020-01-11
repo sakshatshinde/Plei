@@ -18,6 +18,12 @@ def check_map(event): # apply override on deiconify.
         root.overrideredirect(True)
     else:
         pass
+
+def onEnterMin(e):
+    minBtn['background'] = '#424242'
+
+def onLeaveMin(e):
+    minBtn['background'] = BG_VAL
         
 
 root = Tk()
@@ -55,6 +61,8 @@ closeBtn = Button(
 ) 
 closeBtn.place(relx = 1, x =-10, y = 5, anchor = NE)
 
+minBtn.bind("<Enter>", on_enter)
+minBtn.bind("<Leave>", on_leave)
 root.bind('<Map>', check_map) # added bindings to pass windows status to function
 root.bind('<Unmap>', check_map)
 root.mainloop()
