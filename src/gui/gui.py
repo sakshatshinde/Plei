@@ -47,15 +47,22 @@ root.eval('tk::PlaceWindow %s center' % root.winfo_pathname(root.winfo_id()))
 
 #Title 
 title = Label(  root, 
+                text = 'ScreX',
+                fg = '#039be5',
+                background = BG_VAL,
+                font=('Helvetica', 11, 'bold'),
+                relief = FLAT
+)
+title.place(x = root.winfo_width()/45, y = 20 , anchor= 'center')
+
+titleLine = Label(  root, 
                 text = 'Plei - A game launcher with no bloat',
                 fg = '#039be5',
                 background = BG_VAL,
                 font=('Helvetica', 11, 'bold'),
                 relief = FLAT
 )
-title.place(x = root.winfo_width()/2, y = 20 , anchor= 'center')
-#title.place(x = 5, y = 5)
-
+titleLine.place(x = root.winfo_width()/2, y = 20 , anchor= 'center')
 
 # Minimize button
 minIcon = PhotoImage(file = r'resources/minus.png')
