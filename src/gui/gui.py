@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import winsound
 
-BG_VAL = "#000000"
+BG_VAL = "#212121"
 FG_VAL = "#D2BF55"
 
 def close(): #Close the window
@@ -24,6 +24,12 @@ def onEnterMin(e):
 
 def onLeaveMin(e):
     minBtn['background'] = BG_VAL
+
+def onEnterClose(e):
+    closeBtn['background'] = '#424242'
+
+def onLeaveClose(e):
+    closeBtn['background'] = BG_VAL
         
 
 root = Tk()
@@ -45,7 +51,7 @@ minBtn = Button(
     activebackground = BG_VAL, 
     borderwidth = 0
 ) 
-minBtn.place(relx = 1, x = -45, y = 5, anchor = NE)
+minBtn.place(relx = 1, x = -38, y = 5, anchor = NE)
 
 # Close button
 closeIcon = PhotoImage(file = r'resources/close.png')
@@ -59,10 +65,12 @@ closeBtn = Button(
     activebackground = BG_VAL,
     borderwidth = 0
 ) 
-closeBtn.place(relx = 1, x =-10, y = 5, anchor = NE)
+closeBtn.place(relx = 1, x =-5, y = 5, anchor = NE)
 
-minBtn.bind("<Enter>", on_enter)
-minBtn.bind("<Leave>", on_leave)
+minBtn.bind("<Enter>", onEnterMin)
+minBtn.bind("<Leave>", onLeaveMin)
+closeBtn.bind("<Enter>", onEnterClose)
+closeBtn.bind("<Leave>", onLeaveClose)
 root.bind('<Map>', check_map) # added bindings to pass windows status to function
 root.bind('<Unmap>', check_map)
 root.mainloop()
