@@ -31,10 +31,6 @@ As new game launchers came into being it increasingly got annoying to keep track
 Sadly, Some games need the parent launcher to be running in order to launch them. If you try to launch the game from it's binary `exe` it may refuse to launch. To keep things simple, compatible and working as intended, this design decision had to be made. If anyone finds a workaround I'd be happy to implement it, you may contribute to the project directly as well. 
 
 
-## Manage file publication
-
-Since one file can be published to multiple locations, you can list and manage publish locations by clicking **File publication** in the **Publish** sub-menu. This allows you to list and remove publication locations that are linked to your file.
-
 :triangular_ruler: :pencil2: :straight_ruler:
 ## Diagram 
 
