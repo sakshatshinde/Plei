@@ -1,12 +1,13 @@
 
 # Plei 
-#### A game launcher with no bloat
+**A game launcher with no bloat**
+
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 [![HitCount](http://hits.dwyl.io/sakshatshinde/Plei.svg)](http://hits.dwyl.io/sakshatshinde/Plei) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 
-# Why is this a thing?
+## Why is this a thing?
 
 As new game launchers came into being it increasingly got annoying to keep track of all the games over different stores/platform. I wanted to make a unified front where users can access all their games, including the one with no launchers. The goal behind this launcher is to be simple, minimilistic and **bloat-free**
 
