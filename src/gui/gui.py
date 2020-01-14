@@ -65,7 +65,7 @@ gameList = Listbox(root,
                     relief = FLAT, 
                     highlightthickness = 5,
                     selectmode = SINGLE,
-                    height = 40,
+                    height = 42,
                     highlightcolor = FG_VAL,
                     selectbackground = '#424242'
                     )
@@ -80,10 +80,10 @@ title = Label(  root,
                 text = 'Games',
                 fg = '#039be5',
                 background = BG_VAL,
-                font=('Helvetica', 11, 'bold'),
+                font = ('Helvetica', 20, 'bold'),
                 relief = FLAT
 )
-title.place(x = root.winfo_width()/75, y = 738 , anchor= SW)
+title.place(x = root.winfo_width()/75, y = 776 , anchor= SW)
 
 # Minimize button
 minIcon = PhotoImage(file = r'resources/minus.png')
