@@ -86,7 +86,7 @@ title = Label(  root,
 title.place(x = root.winfo_width()/75, y = 776 , anchor= SW)
 
 # Minimize button
-minIcon = PhotoImage(file = r'resources/minus.png')
+minIcon = PhotoImage(file = 'resources\\minus.png')
 minIcon = minIcon.subsample(20,20)
 minBtn = Button(
     root, 
@@ -99,7 +99,7 @@ minBtn = Button(
 minBtn.place(relx = 1, x = -38, y = 5, anchor = NE)
 
 # Close button
-closeIcon = PhotoImage(file = r'resources/close.png')
+closeIcon = PhotoImage(file = 'resources\\close.png')
 #Resizing the image for the button to fit
 closeIcon = closeIcon.subsample(20,20)
 closeBtn = Button(
