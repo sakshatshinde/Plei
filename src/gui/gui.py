@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
-import winsound
+import winsound, pickle
+# FIX THIS from gameOps import readData
 
 BG_VAL = "#212121"
 FG_VAL = "#D2BF55"
@@ -55,9 +56,12 @@ titleLine = Label(  root,
 )
 titleLine.place(x = root.winfo_width()/2, y = 20 , anchor= 'center')
 
-# LIST
-#TEST LIST -> NEED TO BE REPLACED BY GAME_MASTER_LIST
-GAMES = ['Apex', 'GTA V', 'CS:GO','Rainbow Six Siege', 'GTA Vice City','Rainbow Six Siege', 'GTA Vice City','Rainbow Six Siege', 'GTA Vice City','Rainbow Six Siege', 'GTA Vice City','Rainbow Six Siege', 'GTA Vice City']
+#DATA FILE -> GAME_MASTER_LIST
+file = open('gameList.plei', 'rb')
+GAMES = pickle.load(file)
+file.close()
+# print(GAMES)
+#GAMES = readData()
 gameList = Listbox(root, 
                     bg = BG_VAL, 
                     bd = 20,
@@ -69,9 +73,8 @@ gameList = Listbox(root,
                     highlightcolor = FG_VAL,
                     selectbackground = '#424242'
                     )
-                    #yscrollcommand = Scrollbar(orient = VERTICAL))
-
-gameList.yview()
+                    
+gameList.yview()    #vertical scroll
 gameList.insert(0, *GAMES)
 gameList.place(x = root.winfo_width()/60, y = 40, anchor = NW )
 
