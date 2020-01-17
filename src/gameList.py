@@ -1,4 +1,5 @@
 import enum
+
 class Game:
     def __init__(self, name, gameId, gameStore):
         self.name = name 
