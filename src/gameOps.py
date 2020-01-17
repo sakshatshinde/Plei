@@ -160,7 +160,6 @@ def readData():
 
 
 
-
 #---------------------------------------------------------------------------------------------
 # Alternative method to get the appIDs for the games
 # extract the STEAM_ID from that file name
