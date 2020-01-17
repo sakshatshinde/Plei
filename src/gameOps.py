@@ -1,5 +1,5 @@
 from gameList import Game, GameStore
-import os, fnmatch , pickle
+import os, fnmatch #, shelve
 from steamfiles import acf 
 from collections import OrderedDict
 from nested_lookup import nested_lookup
@@ -134,22 +134,6 @@ def launchGame(game):
         print('Something went wrong')
 
     # launchGame('Apex')
-
-
-
-def writeData(gameList : dict):
-    with open('data\\gameList.plei', 'wb') as f:
-        pickle.dump(gameList, f)
-
-def readData():
-    with open('data\\gameList.plei', 'rb') as f:
-        pickle.load(f)                     
-# getOriginIDs()
-# getSteamIDs()
-# print(GAME_LIST_MASTER)
-# writeData(GAME_LIST_MASTER)
-# readData()
-
 
 
 
