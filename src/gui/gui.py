@@ -1,7 +1,12 @@
 from tkinter import *
 from tkinter import ttk
 import winsound, pickle
-# FIX THIS from gameOps import readData
+
+# Dirty fix --------
+import sys
+sys.path.append('D:\\dev\\Plei\\src')
+from gameOps import readData
+# -----------
 
 BG_VAL = "#212121"
 FG_VAL = "#D2BF55"
@@ -57,11 +62,11 @@ titleLine = Label(  root,
 titleLine.place(x = root.winfo_width()/2, y = 20 , anchor= 'center')
 
 #DATA FILE -> GAME_MASTER_LIST
-file = open('gameList.plei', 'rb')
-GAMES = pickle.load(file)
-file.close()
+# file = open('gameList.plei', 'rb')
+# GAMES = pickle.load(file)
+# file.close()
 # print(GAMES)
-#GAMES = readData()
+GAMES = readData()
 gameList = Listbox(root, 
                     bg = BG_VAL, 
                     bd = 20,
