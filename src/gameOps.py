@@ -136,14 +136,16 @@ def launchGame(game):
     # launchGame('Apex')
 
 
-
+# Update the gameList data file
 def writeData(gameList : dict):
     with open('data\\gameList.plei', 'wb') as f:
-        pickle.dump(gameList, f)
+       pickle.dump(gameList, f)
 
+# Read the gameList data file and dump into a dict
 def readData():
     with open('data\\gameList.plei', 'rb') as f:
-        pickle.load(f)                     
+        return pickle.load(f)   #returns dict
+
 # getOriginIDs()
 # getSteamIDs()
 # print(GAME_LIST_MASTER)
