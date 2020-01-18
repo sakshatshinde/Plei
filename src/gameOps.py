@@ -1,5 +1,5 @@
 from gameList import Game, GameStore
-import os, fnmatch , pickle
+import os, fnmatch , pickle, re
 from steamfiles import acf 
 from collections import OrderedDict
 from nested_lookup import nested_lookup
@@ -88,15 +88,29 @@ def getOriginIDs(filePath = 'C:\\ProgramData\\Origin\\LocalContent\\'):
                 gameId.append(fileName)
 
     final = dict(zip(gameName, gameId ))
-    #print(final)
+    
     for game, gameId in final.items():
-        #print(game, '->' , gameId)
         gameAdd(game, gameId, GameStore.ORIGIN)
-    #print(GAME_LIST_MASTER)
-                            
+    #print(GAME_LIST_MASTER)                           
     #getOriginIDs()
     #getSteamIDs()
     #print(GAME_LIST_MASTER)
+
+
+''' Finding Uplay IDs '''
+def getUplayIDs(filePath = 'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\data'):
+    listOfFiles = os.listdir(filePath)
+
+    def findIDs():
+        result = re.findall(r'\d+', str(entry))
+        try : return result[0]
+        except : pass
+
+    for entry in listOfFiles:
+        uPlayID = findIDs() # '\d' finds any number (a digit)
+        if uPlayID != None : print(uPlayID)       
+#getUplayIDs()
+
 
 '''
 Check if the game exists
