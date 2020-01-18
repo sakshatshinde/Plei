@@ -9,7 +9,7 @@ class Game:
 class GameStore(enum.Enum):
     STEAM = "steam://rungameid/"
     EGS = "EGS"
-    UPLAY = "uplay://launch/"
+    UPLAY = "uplay://launch/"   # launch/ID/0
     ORIGIN = "origin://launchgame/"
     PIRATED = "PIRATED"
     
