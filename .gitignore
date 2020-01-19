@@ -18,5 +18,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.log
+*.env
+data/
 # End of https://www.gitignore.io/api/visualstudiocode
 
