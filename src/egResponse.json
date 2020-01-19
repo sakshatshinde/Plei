@@ -1,0 +1,78 @@
+[
+    {
+        "aliases": null,
+        "api_detail_url": "https://www.giantbomb.com/api/game/3030-72014/",
+        "date_added": "2019-02-03 18:57:47",
+        "date_last_updated": "2020-01-12 19:15:11",
+        "deck": "A free-to-play battle royale spin-off of the Titanfall series, trading the series' trademark mechs for class-based last-squad-standing gameplay.",
+        "expected_release_day": 4,
+        "expected_release_month": 2,
+        "expected_release_quarter": null,
+        "expected_release_year": 2019,
+        "guid": "3030-72014",
+        "id": 72014,
+        "image": {
+            "icon_url": "https://www.giantbomb.com/api/image/square_avatar/3079288-box_al.png",
+            "image_tags": "All Images",
+            "medium_url": "https://www.giantbomb.com/api/image/scale_medium/3079288-box_al.png",
+            "original_url": "https://www.giantbomb.com/api/image/original/3079288-box_al.png",
+            "screen_large_url": "https://www.giantbomb.com/api/image/screen_kubrick/3079288-box_al.png",    
+            "screen_url": "https://www.giantbomb.com/api/image/screen_medium/3079288-box_al.png",
+            "small_url": "https://www.giantbomb.com/api/image/scale_small/3079288-box_al.png",
+            "super_url": "https://www.giantbomb.com/api/image/scale_large/3079288-box_al.png",
+            "thumb_url": "https://www.giantbomb.com/api/image/scale_avatar/3079288-box_al.png",
+            "tiny_url": "https://www.giantbomb.com/api/image/square_mini/3079288-box_al.png"
+        },
+        "image_tags": [
+            {
+                "api_detail_url": "https://www.giantbomb.com/api/images/3030-72014/?filter=image_tag%3AAll+Images",
+                "name": "All Images",
+                "total": 28
+            },
+            {
+                "api_detail_url": "https://www.giantbomb.com/api/images/3030-72014/?filter=image_tag%3ABox+Art",
+                "name": "Box Art",
+                "total": 3
+            },
+            {
+                "api_detail_url": "https://www.giantbomb.com/api/images/3030-72014/?filter=image_tag%3AScreenshots",
+                "name": "Screenshots",
+                "total": 22
+            }
+        ],
+        "name": "Apex Legends",
+        "number_of_user_reviews": 0,
+        "original_game_rating": [
+            {
+                "api_detail_url": "https://www.giantbomb.com/api/game_rating/3065-1/",
+                "id": 1,
+                "name": "ESRB: T"
+            }
+        ],
+        "original_release_date": null,
+        "platforms": [
+            {
+                "abbreviation": "PC",
+                "api_detail_url": "https://www.giantbomb.com/api/platform/3045-94/",
+                "id": 94,
+                "name": "PC",
+                "site_detail_url": "https://www.giantbomb.com/pc/3045-94/"
+            },
+            {
+                "abbreviation": "XONE",
+                "api_detail_url": "https://www.giantbomb.com/api/platform/3045-145/",
+                "id": 145,
+                "name": "Xbox One",
+                "site_detail_url": "https://www.giantbomb.com/xbox-one/3045-145/"
+            },
+            {
+                "abbreviation": "PS4",
+                "api_detail_url": "https://www.giantbomb.com/api/platform/3045-146/",
+                "id": 146,
+                "name": "PlayStation 4",
+                "site_detail_url": "https://www.giantbomb.com/playstation-4/3045-146/"
+            }
+        ],
+        "site_detail_url": "https://www.giantbomb.com/apex-legends/3030-72014/"
+    }
+]
