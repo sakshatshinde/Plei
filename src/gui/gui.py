@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter import ttk
 import winsound, pickle
-
 # Dirty fix --------
 import sys
 sys.path.append('D:\\dev\\Plei\\src')
@@ -61,7 +60,7 @@ titleLine = Label(  root,
 )
 titleLine.place(x = root.winfo_width()/2, y = 20 , anchor= 'center')
 
-#DATA FILE -> GAME_MASTER_LIST
+# DATA FILE -> GAME_MASTER_LIST
 # file = open('gameList.plei', 'rb')
 # GAMES = pickle.load(file)
 # file.close()
