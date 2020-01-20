@@ -1,5 +1,4 @@
 import urllib.request
-import re 
 
 def retrieveImg(gameName, imgURL):
     gameName = legalFileName(gameName)     # Windows doesn't like weird stuff in filenames
