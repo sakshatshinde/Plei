@@ -8,7 +8,7 @@ class Game:
 
 class GameStore(enum.Enum):
     STEAM = "steam://rungameid/"
-    EGS = "EGS"
+    EGS = "com.epicgames.launcher://apps/" # + ?action=launch&silent=true"
     UPLAY = "uplay://launch/"   # launch/ID/0
     ORIGIN = "origin://launchgame/"
     PIRATED = "PIRATED"
