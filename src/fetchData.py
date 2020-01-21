@@ -40,14 +40,9 @@ def gameRating(gameName: str):
         return rating
     except :
         raise Exception('Rating not found')
-    
+# print(gameRating('Heave Ho'))
+   
 def imageCache(gameName: str):
     imgURL = gameImgSearch(gameName)
     retrieveImg(gameName, imgURL)
-# print(gameRating('Heave Ho'))
-
-# Working example 
-# imageCache('Heave Ho')
-
-# NOT WORKING -> because ':'
 # imageCache('Star Wars Jedi: fallen order') #// look in gui/imgServe
