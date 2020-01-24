@@ -29,7 +29,6 @@ def gameImgSearch(gameName: str):
         return result
     except :
         raise Exception('Game not found')
-
 # print(gameImgSearch('Star Wars Jedi: fallen order'))
 
 def gameRating(gameName: str):
