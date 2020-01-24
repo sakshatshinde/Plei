@@ -1,5 +1,5 @@
 from gameList import Game, GameStore
-import os, fnmatch , pickle, re
+import os, fnmatch , pickle, re, json
 from steamfiles import acf 
 from collections import OrderedDict
 from nested_lookup import nested_lookup
@@ -111,12 +111,26 @@ def getUplayIDs(filePath = 'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launc
         if uPlayID != None : print(uPlayID)       
 #getUplayIDs()
 
+''' 
+Finding Epic Games Launcher codenames 
+-------------------------------------
+Epic Games Launcher uses "special" codenames for each of their games.
+I don't know why? Seems extra work
+They follow a specific naming theme : All are either flowers / animals
+'''
+def getEpicIDs(filePath = 'C:\\ProgramData\\Epic\\UnrealEngineLauncher\\LauncherInstalled.dat'):
+    with open(filePath) as datFile:
+        data = json.load(datFile)
+        codeName = nested_lookup('AppName', data)[0]
+    return codeName
+    
+#print(getEpicIDs())
 
 '''
 Check if the game exists
 Return the gameID and game's store
 '''
-def gameSearch(game):
+def gameSearch(game: str):
     gameFound = nested_lookup(game, GAME_LIST_MASTER)
     return gameFound
 
