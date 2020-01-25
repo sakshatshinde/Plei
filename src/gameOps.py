@@ -6,7 +6,7 @@ from nested_lookup import nested_lookup
 
 # Master game list for all the games regardless of the launcher
 global GAME_DIRS, GAME_LIST_MASTER
-GAME_LIST_MASTER = {}
+GAME_LIST_MASTER = {} # CHANGE THIS TO READ FROM PLEI.DAT FILE AFTER THE WORK IS DONE
 GAME_DIRS = {}
 
 '''
@@ -91,10 +91,10 @@ def getOriginIDs(filePath = 'C:\\ProgramData\\Origin\\LocalContent\\'):
     
     for game, gameId in final.items():
         gameAdd(game, gameId, GameStore.ORIGIN)
-    #print(GAME_LIST_MASTER)                           
-    #getOriginIDs()
-    #getSteamIDs()
-    #print(GAME_LIST_MASTER)
+#print(GAME_LIST_MASTER)                           
+#getOriginIDs()
+#getSteamIDs()
+#print(GAME_LIST_MASTER)
 
 
 ''' Finding Uplay IDs '''
@@ -111,6 +111,7 @@ def getUplayIDs(filePath = 'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launc
         if uPlayID != None : print(uPlayID)       
 #getUplayIDs()
 
+
 ''' 
 Finding Epic Games Launcher codenames 
 -------------------------------------
@@ -120,11 +121,25 @@ They follow a specific naming theme : All are either flowers / animals
 '''
 def getEpicIDs(filePath = 'C:\\ProgramData\\Epic\\UnrealEngineLauncher\\LauncherInstalled.dat'):
     with open(filePath) as datFile:
+        
         data = json.load(datFile)
-        codeName = nested_lookup('AppName', data)[0]
-    return codeName
+        codeName = nested_lookup('AppName', data) # returns a list of codeNames
+        
+        gameName = []
+        dirPath = nested_lookup('InstallLocation', data) # returns a directory path
+        for name in dirPath:
+            name = re.search(r"(\\)(\w+)($)", name) # Regex for finding the game's name from the directory path
+            gameName.append(name.group().strip('\\'))
     
-#print(getEpicIDs())
+    final = dict(zip(gameName, codeName)) # combining the game's actual name with the codename
+    
+    for game, codeName in final.items():        # Adding game details to the master list
+        gameAdd(game, codeName, GameStore.EGS)
+    
+    
+#getEpicIDs()
+#print(GAME_LIST_MASTER)
+
 
 '''
 Check if the game exists
@@ -142,7 +157,7 @@ gameObj is there to check the Game Store for the game so we can differentiate la
 Eg: IF STEAM THEN CMD = "steam://rungameid/"
 This CMD is grabbed from the GameStore Enum by .value
 '''
-def launchGame(game):
+def launchGame(game: str):
     try:
         [gameInfo] = gameSearch(game)
     except:
@@ -157,15 +172,19 @@ def launchGame(game):
     elif(gameStoreName == 'ORIGIN'):
         launchStruc = GameStore.ORIGIN.value
         os.startfile(launchStruc + str(gameId))
+    
+    elif(gameStoreName ==  'EGS'):
+        launchStruc = GameStore.EGS.value
+        os.startfile(launchStruc + gameId + '?action=launch&silent=true')
         
     else:
         print('Something went wrong')
 
-    # launchGame('Apex')
+#launchGame('TheCycleEarlyAccess')
 
 
 # Update the gameList data file
-def writeData(gameList : dict):
+def writeData(gameList: dict):
     with open('data\\gameList.plei', 'wb') as f:
        pickle.dump(gameList, f)
 
@@ -174,11 +193,14 @@ def readData():
     with open('data\\gameList.plei', 'rb') as f:
         return pickle.load(f)   #returns dict
 
-# getOriginIDs()
-# getSteamIDs()
-# print(GAME_LIST_MASTER)
 # writeData(GAME_LIST_MASTER)
 # readData()
+# getOriginIDs()
+# getSteamIDs()
+# getEpicIDs()
+# launchGame('TheCycleEarlyAccess')
+# print(GAME_LIST_MASTER)
+
 
 
 
@@ -195,7 +217,7 @@ def readData():
 # extract the STEAM_ID from that file name
 # The regex re.findall() returns ['STEAM_ID'] so it is a list with just 1 value in it at the 0th position
 
-"""
+'''
 def getSteamIDs(filePath):
     listOfFiles = os.listdir(filePath)
     pattern = "*.acf"
@@ -203,6 +225,6 @@ def getSteamIDs(filePath):
         if fnmatch.fnmatch(entry, pattern):
             extractedSteamID = re.findall(r'\d+', str(entry)) # '\d' finds any number (a digit)
             STEAM_ID.append(extractedSteamID[0])
-"""
+'''
           
 
