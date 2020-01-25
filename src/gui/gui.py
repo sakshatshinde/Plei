@@ -3,6 +3,7 @@ from tkinter import ttk
 import tkinter.font as fontyPoo # Sorry for the weird name :p
 import winsound, pickle
 
+
 # Dirty fix --------
 import sys
 sys.path.append('D:\\dev\\Plei\\src')
@@ -89,7 +90,7 @@ gameList.yview()    #vertical scroll
 gameList.insert(0, *GAMES)
 gameList.place(x = root.winfo_width()/55, y = 40, anchor = NW )
 
-# Footer 
+# Header
 title = Label(  root, 
                 text = 'Games ',
                 fg = '#039be5',
@@ -98,6 +99,11 @@ title = Label(  root,
                 relief = FLAT
 )
 title.place(x = root.winfo_width()/72, y = 60 , anchor= SW)
+
+# Image
+img = PhotoImage(file = 'data\\img\\Apex legends.png') # Test image
+label = Label(image = img)
+label.place(x = root.winfo_width()/2, y = root.winfo_height()/2, anchor = CENTER )
 
 # Minimize button
 minIcon = PhotoImage(file = 'resources\\minus.png')
