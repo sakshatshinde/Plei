@@ -4,9 +4,15 @@ from steamfiles import acf
 from collections import OrderedDict
 from nested_lookup import nested_lookup
 
+
+# Read the gameList data file and dump into a dict
+def readData():
+    with open('data\\gameList.plei', 'rb') as f:
+        # print(pickle.load(f))
+        return pickle.load(f)   #returns dict
+
 # Master game list for all the games regardless of the launcher
-global GAME_DIRS, GAME_LIST_MASTER
-GAME_LIST_MASTER = {} # CHANGE THIS TO READ FROM PLEI.DAT FILE AFTER THE WORK IS DONE
+GAME_LIST_MASTER = {}
 GAME_DIRS = {}
 
 '''
@@ -91,10 +97,10 @@ def getOriginIDs(filePath = 'C:\\ProgramData\\Origin\\LocalContent\\'):
     
     for game, gameId in final.items():
         gameAdd(game, gameId, GameStore.ORIGIN)
-#print(GAME_LIST_MASTER)                           
-#getOriginIDs()
-#getSteamIDs()
-#print(GAME_LIST_MASTER)
+                        
+# getOriginIDs()
+# getSteamIDs()
+# print(GAME_LIST_MASTER)
 
 
 ''' Finding Uplay IDs '''
@@ -180,28 +186,19 @@ def launchGame(game: str):
     else:
         print('Something went wrong')
 
-#launchGame('TheCycleEarlyAccess')
-
+# launchGame('Apex')
 
 # Update the gameList data file
 def writeData(gameList: dict):
     with open('data\\gameList.plei', 'wb') as f:
        pickle.dump(gameList, f)
 
-# Read the gameList data file and dump into a dict
-def readData():
-    with open('data\\gameList.plei', 'rb') as f:
-        return pickle.load(f)   #returns dict
-
-# writeData(GAME_LIST_MASTER)
-# readData()
-# getOriginIDs()
-# getSteamIDs()
-# getEpicIDs()
-# launchGame('TheCycleEarlyAccess')
-# print(GAME_LIST_MASTER)
-
-
+# Syncs the master list to all the installed games
+def sync(GAME_LIST_MASTER = GAME_LIST_MASTER):
+    getOriginIDs()
+    getSteamIDs()
+    getEpicIDs()
+    writeData(GAME_LIST_MASTER)
 
 
 
