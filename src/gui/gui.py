@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk
+import tkinter.font as fontyPoo # Sorry for the weird name :p
 import winsound, pickle
+
 # Dirty fix --------
 import sys
 sys.path.append('D:\\dev\\Plei\\src')
@@ -66,6 +68,7 @@ titleLine.place(x = root.winfo_width()/2, y = 20 , anchor= 'center')
 # file.close()
 # print(GAMES)
 GAMES = readData()
+customFont = fontyPoo.Font(size = 12)
 gameList = Listbox(root, 
                     bg = BG_VAL, 
                     bd = 20,
@@ -73,24 +76,28 @@ gameList = Listbox(root,
                     relief = FLAT, 
                     highlightthickness = 5,
                     selectmode = SINGLE,
-                    height = 42,
-                    highlightcolor = FG_VAL,
-                    selectbackground = '#424242'
+                    height = 35,
+                    highlightcolor = '#f2209e',
+                    selectbackground = BG_VAL,
+                    selectforeground = '#039be5',
+                    width = 0,
+                    activestyle = NONE,
+                    font = customFont
                     )
                     
 gameList.yview()    #vertical scroll
 gameList.insert(0, *GAMES)
-gameList.place(x = root.winfo_width()/60, y = 40, anchor = NW )
+gameList.place(x = root.winfo_width()/55, y = 40, anchor = NW )
 
 # Footer 
 title = Label(  root, 
-                text = 'Games',
+                text = 'Games ',
                 fg = '#039be5',
                 background = BG_VAL,
                 font = ('Helvetica', 20, 'bold'),
                 relief = FLAT
 )
-title.place(x = root.winfo_width()/75, y = 776 , anchor= SW)
+title.place(x = root.winfo_width()/72, y = 60 , anchor= SW)
 
 # Minimize button
 minIcon = PhotoImage(file = 'resources\\minus.png')
