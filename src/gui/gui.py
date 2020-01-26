@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter.font as fontyPoo # Sorry for the weird name :p
-import winsound, pickle
+import winsound, pickle, fetchData, asyncio
 
 # Dirty fix --------
 import sys
@@ -26,6 +26,16 @@ def check_map(event): # apply override on deiconify.
     else:
         pass
 
+# def rating():
+#     ratingList = []
+#     allGames = GAMES
+#     for game in allGames:
+#         ratingList.append(fetchData.gameRating(game))
+#     final = dict(zip(allGames, ratingList))
+#     print(final)
+
+# rating()
+
 # Hover functions
 def onEnterMin(e):
     minBtn['background'] = '#424242'
@@ -38,6 +48,8 @@ def onEnterClose(e):
 
 def onLeaveClose(e):
     closeBtn['background'] = BG_VAL
+
+
 
 root = Tk()
 
@@ -64,8 +76,7 @@ titleLine.place(x = root.winfo_width()/2, y = 20 , anchor= 'center')
 
 # Game list
 sync()  # Update List STATE
-
-GAMES = readData()
+GAMES = readData() # Read from plei data file
 customFont = fontyPoo.Font(size = 12)
 gameList = Listbox(root, 
                     bg = BG_VAL, 
@@ -109,7 +120,7 @@ launchLabel = Label(  root,
                 font = ('Helvetica', 20, 'bold'),
                 relief = FLAT
 )
-launchLabel.place(x = 1200, y = root.winfo_height()/2.5, anchor= CENTER)
+launchLabel.place(x = root.winfo_width()/2, y = root.winfo_height()/2.5, anchor= CENTER)
 
 # Launch Button
 launchIcon = PhotoImage(file = 'resources\\tic-tac-toe.png')
@@ -122,7 +133,8 @@ launchBtn = Button(
     activebackground = BG_VAL, 
     borderwidth = 0
 ) 
-launchBtn.place(x = 1200, y = root.winfo_height()/2, anchor = CENTER)
+launchBtn.place(x = root.winfo_width()/2, y = root.winfo_height()/2, anchor = CENTER)
+# x = 1200
 
 # Header
 title = Label(  root, 
@@ -134,20 +146,21 @@ title = Label(  root,
 )
 title.place(x = root.winfo_width()/72, y = 60 , anchor= SW)
 
-# Image
-img = PhotoImage(file = 'data\\img\\Apex legends.png') # Test image
-label = Label(image = img)
-label.place(x = root.winfo_width()/2, y = root.winfo_height()/2, anchor = CENTER )
+# # Image
+# img = PhotoImage(file = 'data\\img\\Apex legends.png') # Test image
+# label = Label(image = img)
+# label.place(x = root.winfo_width()/2, y = root.winfo_height()/2, anchor = CENTER )
+
 
 # Footer
-# footer = Label(  root, 
-#                 text = 'by ScreX',
-#                 fg = '#039be5',
-#                 background = BG_VAL,
-#                 font = ('Helvetica', 20, 'bold'),
-#                 relief = FLAT
-# )
-# footer.place(x = root.winfo_width()/3, y = 60 , anchor= CENTER)
+footer = Label(  root, 
+                text = 'by ScreX ',
+                fg = '#039be5',
+                background = BG_VAL,
+                font = ('Helvetica', 14, 'bold'),
+                relief = FLAT
+)
+footer.place(x = root.winfo_width()/65, y = 765 , anchor= SW)
 
 # Minimize button
 minIcon = PhotoImage(file = 'resources\\minus.png')
