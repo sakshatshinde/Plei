@@ -5,7 +5,7 @@
 import pybomb, os
 from nested_lookup import  nested_lookup
 from dotenv import load_dotenv
-from gui.imgServe import retrieveImg
+from imgServe import retrieveImg
 
 # Client 
 load_dotenv()   # secure way to access API keys
@@ -38,10 +38,12 @@ def gameRating(gameName: str):
         rating = nested_lookup("name", result)[0]   # extracting data
         return rating
     except :
-        raise Exception('Rating not found')
-# print(gameRating('Heave Ho'))
+        rating = 'None'
+        return rating
+# print(gameRating('Warframe'))
    
 def imageCache(gameName: str):
     imgURL = gameImgSearch(gameName)
     retrieveImg(gameName, imgURL)
 # imageCache('Star Wars Jedi: fallen order') #// look in gui/imgServe
+
