@@ -22,6 +22,5 @@ __pycache__/
 *.log
 *.env
 data/
-*.plei
 # End of https://www.gitignore.io/api/visualstudiocode
 
