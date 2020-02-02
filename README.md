@@ -12,7 +12,7 @@
 - [x] Origin
 - [x] Epic Games Launcher
 - [x] Uplay
-- [ ] Pirated Games
+- [ ] Standalone Games
 - [ ] Battlenet
 
 ## Why is this a thing?
