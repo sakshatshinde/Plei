@@ -142,16 +142,15 @@ def getUplayIDs():
     baseReg = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
     subKey = winreg.OpenKey(baseReg, "SOFTWARE\\WOW6432Node\\Ubisoft\\Launcher\\Installs\\")
 
-    for i in range(50) :
+    for _ in range(50) :
         try :
-            gameId = winreg.EnumKey(subKey,i)
+            gameId = winreg.EnumKey(subKey, _)
 
             gameNameKey = winreg.OpenKey(baseReg, "SOFTWARE\\WOW6432Node\\Ubisoft\\Launcher\\Installs\\" + gameId + "\\")
-            name = winreg.EnumValue(gameNameKey, 1)
-
-            path = name[1]
+            name = winreg.EnumValue(gameNameKey, 1)     # Name is a list of keys returned by the func
+            path = name[1]                              # The pos 1 contains Game Directory
             path = os.path.dirname(path)
-            gameName = os.path.basename(path)
+            gameName = os.path.basename(path)           # The path name is actually the ID for the game
 
             # print('\nThe Game name is: ' + gameName + ' \nThe Game ID is: ' + gameId)
             # GAME_LIST_MASTER[gameName] = gameId
