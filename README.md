@@ -8,11 +8,13 @@
 
 **This project is ready for the launchers given below!** 
 
+:warning: Note: You need to manually change Directories defined in ***gameOps.py*** for now.
+
 - [x] Steam
 - [x] Origin
 - [x] Epic Games Launcher
-- [ ] Uplay
-- [ ] Pirated Games
+- [x] Uplay
+- [ ] Standalone Games
 - [ ] Battlenet
 
 ## Why is this a thing?
@@ -37,6 +39,7 @@ As new game launchers came into being it increasingly got annoying to keep track
 ## Why is this launcher dependent on other launchers?
 
 Sadly, Some games need the parent launcher to be running in order to launch them. If you try to launch the game from it's binary `exe` it may refuse to launch. To keep things simple, compatible and working as intended, this design decision had to be made. If anyone finds a workaround I'd be happy to implement it, you may contribute to the project directly as well. 
+
 
 
 :triangular_ruler: :pencil2: :straight_ruler:
