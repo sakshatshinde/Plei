@@ -74,6 +74,19 @@ def getSteamIDs(filePath = 'D:\\SteamLibrary\\steamapps\\'):
                 gameAppID = nested_lookup('appid', STEAM_DATA)
                 gameAdd(gameName[0], gameAppID[0], GameStore.STEAM) #gameName and gameAppID are lists with 1 element only
 
+def getStandalone(filePath = 'D:\\Games\\'):
+    pattern = "*.exe"
+    pattern2 = "unin*"
+    for  root, dir, files in os.walk(filePath):
+        for file in files:
+            if(
+                fnmatch.fnmatch(file, pattern) and 
+                fnmatch.fnmatch(file, pattern) != 
+                fnmatch.fnmatch(file, pattern2)
+            ):
+                print(file)
+                
+# print(getStandalone())
 
 '''
 Origin stores info about the installed games in the C:\\ProgamData....
