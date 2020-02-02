@@ -11,7 +11,7 @@
 - [x] Steam
 - [x] Origin
 - [x] Epic Games Launcher
-- [ ] Uplay
+- [x] Uplay
 - [ ] Pirated Games
 - [ ] Battlenet
 
