@@ -16,7 +16,7 @@ GAME_LIST_MASTER = {}
 GAME_DIRS = {}
 
 '''
-Possible gameStore values = STEAM, UPLAY, PIRATED, EGS, ORIGIN, GOG
+Possible gameStore values = STEAM, UPLAY, STANDALONE, EGS, ORIGIN, GOG
 GameStore is an enum and the class has all the specified values : EGS, ORGIN etc
 gameStore: GameStore makes sure that the gameStore is of type GameStore
 gameStore.name is the key itself in the GameStore class 
@@ -33,7 +33,7 @@ def gameAdd(gameName, gameId, gameStore: GameStore):
 # Storing directories of game stores
 def storeDirectory(gameStore , storeDir) -> str:
     if(gameStore == "ORIGIN"):
-        global originPath, uPlayPath, piratedPath
+        global originPath, uPlayPath, standalonePath
         originPath = storeDir
         GAME_DIRS[gameStore] = originPath
         return(originPath)
@@ -43,10 +43,10 @@ def storeDirectory(gameStore , storeDir) -> str:
         GAME_DIRS[gameStore] = uPlayPath
         return(uPlayPath)
 
-    if(gameStore == "PIRATED"):
-        piratedPath = storeDir
-        GAME_DIRS[gameStore] = piratedPath
-        return(piratedPath)
+    if(gameStore == "STANDALONE"):
+        standalonePath = storeDir
+        GAME_DIRS[gameStore] = standalonePath
+        return(standalonePath)
 
     if(gameStore == "STEAM"):
         steamPath = storeDir

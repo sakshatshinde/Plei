@@ -11,5 +11,5 @@ class GameStore(enum.Enum):
     EGS = "com.epicgames.launcher://apps/" # + ?action=launch&silent=true"
     UPLAY = "uplay://launch/"   # launch/ID/0
     ORIGIN = "origin://launchgame/"
-    PIRATED = "PIRATED"
+    STANDALONE = "STANDALONE"
     

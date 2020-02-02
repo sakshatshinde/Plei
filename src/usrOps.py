@@ -1,6 +1,6 @@
 from gameOps import storeDirectory, GAME_DIRS, GAME_LIST_MASTER
 
-# User input for ORIGN/UPLAY/PIRATED directories
+# User input for ORIGN/UPLAY/STANDALONE directories
 gameStore, storeDir = input('Game Store name: '), input('Game store Dir: ')
 
 #For Steam
