@@ -1,8 +1,9 @@
 from gameList import Game, GameStore
-import os, fnmatch , pickle, re, json
 from steamfiles import acf 
 from collections import OrderedDict
 from nested_lookup import nested_lookup
+import os, fnmatch , pickle, re, json
+import winreg #for Uplay
 
 
 # Read the gameList data file and dump into a dict
@@ -74,6 +75,10 @@ def getSteamIDs(filePath = 'D:\\SteamLibrary\\steamapps\\'):
                 gameAppID = nested_lookup('appid', STEAM_DATA)
                 gameAdd(gameName[0], gameAppID[0], GameStore.STEAM) #gameName and gameAppID are lists with 1 element only
 
+'''
+Finding binaries for games 
+Eliminating other types of binaries, eg: uninstall.exe etc
+''' 
 def getStandalone(filePath = 'D:\\Games\\'):
     pattern = "*.exe"
     pattern2 = "unin*"
@@ -116,20 +121,47 @@ def getOriginIDs(filePath = 'C:\\ProgramData\\Origin\\LocalContent\\'):
 # print(GAME_LIST_MASTER)
 
 
-''' Finding Uplay IDs '''
-def getUplayIDs(filePath = 'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\data'):
-    listOfFiles = os.listdir(filePath)
+''' Finding Uplay IDs Old Method -> Depricated'''
+# def getUplayIDs(filePath = 'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\data'):
+#     listOfFiles = os.listdir(filePath)
 
-    def findIDs():
-        result = re.findall(r'\d+', str(entry))
-        try : return result[0]
-        except : pass
+#     def findIDs():
+#         result = re.findall(r'\d+', str(entry))
+#         try : return result[0]
+#         except : pass
 
-    for entry in listOfFiles:
-        uPlayID = findIDs() # '\d' finds any number (a digit)
-        if uPlayID != None : print(uPlayID)       
-#getUplayIDs()
+#     for entry in listOfFiles:
+#         uPlayID = findIDs() # '\d' finds any number (a digit)
+#         if uPlayID != None : print(uPlayID)       
+# # getUplayIDs()
 
+''' Finding Uplay IDs via registry '''
+def getUplayIDs():
+    # ubisoftGameList = {}
+
+    baseReg = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
+    subKey = winreg.OpenKey(baseReg, "SOFTWARE\\WOW6432Node\\Ubisoft\\Launcher\\Installs\\")
+
+    for i in range(50) :
+        try :
+            gameId = winreg.EnumKey(subKey,i)
+
+            gameNameKey = winreg.OpenKey(baseReg, "SOFTWARE\\WOW6432Node\\Ubisoft\\Launcher\\Installs\\" + gameId + "\\")
+            name = winreg.EnumValue(gameNameKey, 1)
+
+            path = name[1]
+            path = os.path.dirname(path)
+            gameName = os.path.basename(path)
+
+            # print('\nThe Game name is: ' + gameName + ' \nThe Game ID is: ' + gameId)
+            # GAME_LIST_MASTER[gameName] = gameId
+            gameAdd(gameName, gameId, GameStore.UPLAY)
+
+        except :
+            pass
+
+    winreg.CloseKey(baseReg)
+    
 
 ''' 
 Finding Epic Games Launcher codenames 
@@ -196,6 +228,10 @@ def launchGame(game: str):
         launchStruc = GameStore.EGS.value
         os.startfile(launchStruc + gameId + '?action=launch&silent=true')
         
+    elif(gameStoreName ==  'UPLAY'):
+        launchStruc = GameStore.UPLAY.value
+        os.startfile(launchStruc + gameId + '/0')
+
     else:
         print('Something went wrong')
 
@@ -211,9 +247,11 @@ def sync(GAME_LIST_MASTER = GAME_LIST_MASTER):
     getOriginIDs()
     getSteamIDs()
     getEpicIDs()
+    getUplayIDs()
     writeData(GAME_LIST_MASTER)
 
-
+# sync()    
+# print(GAME_LIST_MASTER)
 
 
 
