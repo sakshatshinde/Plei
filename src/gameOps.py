@@ -94,7 +94,7 @@ def getStandalone(filePath = 'D:\\Games\\'):
 # print(getStandalone())
 
 '''
-Origin stores info about the installed games in the C:\\ProgamData....
+Origin stores info about the installed games in the C:\ProgamData....
 Inside Each game has its own folder with the same name as of the game
 There we have .msft files which we can grab and strip the names and use them as gameIds
 we use those gameIds with the cmd -> origin://launchgame/[gameId] to launch games later in launchGame()
@@ -121,7 +121,8 @@ def getOriginIDs(filePath = 'C:\\ProgramData\\Origin\\LocalContent\\'):
 # print(GAME_LIST_MASTER)
 
 
-''' Finding Uplay IDs Old Method -> Depricated'''
+''' Finding Uplay IDs Old Method -> Depricated '''
+
 # def getUplayIDs(filePath = 'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\data'):
 #     listOfFiles = os.listdir(filePath)
 
@@ -135,10 +136,16 @@ def getOriginIDs(filePath = 'C:\\ProgramData\\Origin\\LocalContent\\'):
 #         if uPlayID != None : print(uPlayID)       
 # # getUplayIDs()
 
-''' Finding Uplay IDs via registry '''
+''' 
+Finding Uplay IDs via registry 
+------------------------------
+Uplay afaik doesn't have user accessible data files. So had to go WinRegistry route
+Even their game icons have "encrypted" names. 
+The Uplay IDs have key values stored in them which contain their install directory.
+'''
 def getUplayIDs():
-    # ubisoftGameList = {}
-
+    # WOW6432Node -> Represents you are on a 64 bit machines 
+    # If someone can port this to work for 32 bit machines as well Thanks!
     baseReg = winreg.ConnectRegistry(None, winreg.HKEY_LOCAL_MACHINE)
     subKey = winreg.OpenKey(baseReg, "SOFTWARE\\WOW6432Node\\Ubisoft\\Launcher\\Installs\\")
 
@@ -264,14 +271,14 @@ def sync(GAME_LIST_MASTER = GAME_LIST_MASTER):
 # extract the STEAM_ID from that file name
 # The regex re.findall() returns ['STEAM_ID'] so it is a list with just 1 value in it at the 0th position
 
-'''
-def getSteamIDs(filePath):
-    listOfFiles = os.listdir(filePath)
-    pattern = "*.acf"
-    for entry in listOfFiles:
-        if fnmatch.fnmatch(entry, pattern):
-            extractedSteamID = re.findall(r'\d+', str(entry)) # '\d' finds any number (a digit)
-            STEAM_ID.append(extractedSteamID[0])
-'''
+
+# def getSteamIDs(filePath):
+#     listOfFiles = os.listdir(filePath)
+#     pattern = "*.acf"
+#     for entry in listOfFiles:
+#         if fnmatch.fnmatch(entry, pattern):
+#             extractedSteamID = re.findall(r'\d+', str(entry)) # '\d' finds any number (a digit)
+#             STEAM_ID.append(extractedSteamID[0])
+
           
 
