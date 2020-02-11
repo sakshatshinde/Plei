@@ -10,7 +10,7 @@ GAME_LIST_MASTER = {}
 
 '''
 Possible gameStore values = STEAM, UPLAY, STANDALONE, EGS, ORIGIN, GOG
-GameStore is an enum and the class has all the specified values : EGS, ORGIN etc
+GameStore is an enum and the class has all the specified values : EGS, ORIGIN etc
 gameStore: GameStore makes sure that the gameStore is of type GameStore
 gameStore.name is the key itself in the GameStore class 
 >so for example if we do gameAdd('doki doki', 123234, GameStore.EGS)
