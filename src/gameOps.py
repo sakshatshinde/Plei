@@ -5,16 +5,8 @@ from nested_lookup import nested_lookup
 import os, fnmatch , pickle, re, json
 import winreg #for Uplay
 
-
-# Read the gameList data file and dump into a dict
-def readData():
-    with open('data\\gameList.plei', 'rb') as f:
-        # print(pickle.load(f))
-        return pickle.load(f)   #returns dict
-
 # Master game list for all the games regardless of the launcher
 GAME_LIST_MASTER = {}
-GAME_DIRS = {}
 
 '''
 Possible gameStore values = STEAM, UPLAY, STANDALONE, EGS, ORIGIN, GOG
@@ -30,32 +22,6 @@ def gameAdd(gameName, gameId, gameStore: GameStore):
     GAME_LIST_MASTER[game.name] = [game.gameId, gameStore.name]
     #gameAdd('Apex Legends', 4444, GameStore.ORIGIN)
     #print(GAME_LIST_MASTER)
-
-# Storing directories of game stores
-def storeDirectory(gameStore , storeDir) -> str:
-    if(gameStore == "ORIGIN"):
-        global originPath, uPlayPath, standalonePath
-        originPath = storeDir
-        GAME_DIRS[gameStore] = originPath
-        return(originPath)
-
-    if(gameStore == "UPLAY"):
-        uPlayPath = storeDir
-        GAME_DIRS[gameStore] = uPlayPath
-        return(uPlayPath)
-
-    if(gameStore == "STANDALONE"):
-        standalonePath = storeDir
-        GAME_DIRS[gameStore] = standalonePath
-        return(standalonePath)
-
-    if(gameStore == "STEAM"):
-        steamPath = storeDir
-        GAME_DIRS[gameStore] = steamPath
-        return(steamPath)
-
-    #storeDirectory('STEAM','C:\\Program Files (x86)\\Origin Games')
-    #print(GAME_DIRS)
 
 '''
 Get the steamapps/ folder path
@@ -224,7 +190,7 @@ def launchGame(game: str):
 
     if(gameStoreName == 'STEAM'):
         launchStruc = GameStore.STEAM.value
-        os.startfile(launchStruc + str(gameId))
+        os.startfile(launchStruc + str(gameId))     # Search for an optional -silent flag if possible
 
     elif(gameStoreName == 'ORIGIN'):
         launchStruc = GameStore.ORIGIN.value
@@ -242,6 +208,12 @@ def launchGame(game: str):
         print('Something went wrong')
 
 # launchGame('Apex')
+
+# Read the gameList data file and dump into a dict
+def readData():
+    with open('data\\gameList.plei', 'rb') as f:
+        # print(pickle.load(f))
+        return pickle.load(f)   #returns dict
 
 # Update the gameList data file
 def writeData(gameList: dict):
