@@ -19,6 +19,8 @@ __pycache__/
 *$py.class
 
 ### ignore ###
+data/
+*.plei
 *.log
 *.env
 # End of https://www.gitignore.io/api/visualstudiocode
