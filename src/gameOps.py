@@ -1,10 +1,10 @@
-from src.gameList import Game, GameStore
+from gameList import Game, GameStore
 from steamfiles import acf 
 from collections import OrderedDict
 from nested_lookup import nested_lookup
 import os, fnmatch , pickle, re, json
 import winreg #for Uplay
-from src.usrOps import  readDirList
+from usrOps import  readDirList
 
 # Master game list for all the games regardless of the launcher
 GAME_LIST_MASTER = {}
