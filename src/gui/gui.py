@@ -3,13 +3,14 @@ def plei():
     from tkinter import ttk
     import tkinter.font as fontyPoo # Sorry for the weird name :p
     import winsound, pickle
+    from src.gameOps import readData, sync, launchGame
     # import fetchData
 
-    # Dirty fix --------
-    import sys
-    sys.path.append('D:\\dev\\Plei\\src')
-    from gameOps import readData, sync, launchGame
-    # -----------
+    # # Dirty fix --------
+    # import sys
+    # sys.path.append('D:\\dev\\Plei\\src')
+    # from gameOps import readData, sync, launchGame
+    # # -----------
 
     BG_VAL = "#212121"
     FG_VAL = "#D2BF55"
