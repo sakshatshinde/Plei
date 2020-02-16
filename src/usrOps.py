@@ -36,14 +36,16 @@ def storeDirectory(gameStore, storeDir) -> str:
     if(gameStore == "EGS"):
         egsPath = storeDir
         GAME_DIRS[gameStore] = egsPath
-        return(steamPath)
+        return(egsPath)
 
 # storeDirectory('STEAM','C:\\Program Files (x86)\\Origin Games')
 # print(GAME_DIRS)
+
+
 def selection():
     while True:
         print("Select a game store")
-        sel = int(input("\n 1: STEAM \n 2: EGS \n 3: ORIGIN \n 4: UPLAY \n 5: Standalone \n 6: Done"))
+        sel = int(input("\n 1: STEAM \n 2: EGS \n 3: ORIGIN \n 4: UPLAY \n 5: Standalone \n 6: Done \n\n"))
         dirLoc = str(input("Input the directory location"))
 
         if sel == 1: storeDirectory('STEAM', dirLoc)
@@ -51,14 +53,15 @@ def selection():
         if sel == 3: storeDirectory('ORIGIN', dirLoc)
         if sel == 4: storeDirectory('UPLAY', dirLoc)
         if sel == 5: storeDirectory('Standalone', dirLoc)
-        if sel == 6: break
+        if sel == 6: return 'We are all set!!'
 
-    return 'We are all set!!'
-
+   
 # Update the dirList data file
 def writeDirList(dirList: dict):
     with open('data\\dirList.plei', 'wb') as f:
        pickle.dump(dirList, f)
 
-# readDirList()
-writeDirList(GAME_DIRS)
+# print(readDirList())
+# selection()
+# writeDirList(GAME_DIRS)
+# print(readDirList())

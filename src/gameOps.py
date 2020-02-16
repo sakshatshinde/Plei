@@ -4,9 +4,18 @@ from collections import OrderedDict
 from nested_lookup import nested_lookup
 import os, fnmatch , pickle, re, json
 import winreg #for Uplay
+from usrOps import  readDirList
 
 # Master game list for all the games regardless of the launcher
 GAME_LIST_MASTER = {}
+
+# Master game Directory list for all launchers
+GAME_DIRS = readDirList() # Gets values from data/dirList.plei
+GAME_DIR_STEAM = GAME_DIRS['STEAM'] 
+GAME_DIR_EGS = GAME_DIRS['EGS']
+GAME_DIR_ORIGIN = GAME_DIRS['ORIGIN'] 
+# print(GAME_DIR_STEAM +'\n'+ GAME_DIR_EGS +'\n'+ GAME_DIR_ORIGIN)
+
 
 '''
 Possible gameStore values = STEAM, UPLAY, STANDALONE, EGS, ORIGIN, GOG
@@ -23,6 +32,7 @@ def gameAdd(gameName, gameId, gameStore: GameStore):
     #gameAdd('Apex Legends', 4444, GameStore.ORIGIN)
     #print(GAME_LIST_MASTER)
 
+
 '''
 Get the steamapps/ folder path
 The steamapps/ folder contains appmanifest_STEAM-ID.acf files
@@ -30,7 +40,7 @@ find all files with .acf extension
 then open the .acf files, extract the name and the appID from the files
 use gameAdd to add the game 
 '''
-def getSteamIDs(filePath = 'D:\\SteamLibrary\\steamapps\\'):
+def getSteamIDs(filePath = GAME_DIR_STEAM):       #'D:\\SteamLibrary\\steamapps\\'
     listOfFiles = os.listdir(filePath)
     pattern = "*.acf"
     for entry in listOfFiles:
@@ -40,6 +50,10 @@ def getSteamIDs(filePath = 'D:\\SteamLibrary\\steamapps\\'):
                 gameName = nested_lookup('name', STEAM_DATA)
                 gameAppID = nested_lookup('appid', STEAM_DATA)
                 gameAdd(gameName[0], gameAppID[0], GameStore.STEAM) #gameName and gameAppID are lists with 1 element only
+
+# getSteamIDs()
+# print(GAME_LIST_MASTER)
+
 
 '''
 Finding binaries for games 
@@ -66,10 +80,11 @@ There we have .msft files which we can grab and strip the names and use them as 
 we use those gameIds with the cmd -> origin://launchgame/[gameId] to launch games later in launchGame()
 '''
 # LINK : https://gaming.stackexchange.com/questions/301777/find-uplay-origin-battle-net-game-id
-def getOriginIDs(filePath = 'C:\\ProgramData\\Origin\\LocalContent\\'):
+
+def getOriginIDs(filePath = GAME_DIR_ORIGIN):     #'C:\\ProgramData\\Origin\\LocalContent\\'
     pattern = "*.mfst"
     gameName, gameId  = [], []
-    for root, dirs, files in os.walk("C:\\ProgramData\\Origin\\LocalContent"):
+    for root, dirs, files in os.walk(GAME_DIR_ORIGIN):      #C:\\ProgramData\\Origin\\LocalContent
         for dir in dirs:
             gameName.append(dir)
         for fileName in files:
@@ -86,21 +101,6 @@ def getOriginIDs(filePath = 'C:\\ProgramData\\Origin\\LocalContent\\'):
 # getSteamIDs()
 # print(GAME_LIST_MASTER)
 
-
-''' Finding Uplay IDs Old Method -> Depricated '''
-
-# def getUplayIDs(filePath = 'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\data'):
-#     listOfFiles = os.listdir(filePath)
-
-#     def findIDs():
-#         result = re.findall(r'\d+', str(entry))
-#         try : return result[0]
-#         except : pass
-
-#     for entry in listOfFiles:
-#         uPlayID = findIDs() # '\d' finds any number (a digit)
-#         if uPlayID != None : print(uPlayID)       
-# # getUplayIDs()
 
 ''' 
 Finding Uplay IDs via registry 
@@ -142,8 +142,8 @@ Epic Games Launcher uses "special" codenames for each of their games.
 I don't know why? Seems extra work
 They follow a specific naming theme : All are either flowers / animals
 '''
-def getEpicIDs(filePath = 'C:\\ProgramData\\Epic\\UnrealEngineLauncher\\LauncherInstalled.dat'):
-    with open(filePath) as datFile:
+def getEpicIDs(filePath = GAME_DIR_EGS):        #'C:\\ProgramData\\Epic\\UnrealEngineLauncher\\LauncherInstalled.dat'
+    with open(filePath) as datFile:             ##IMP -> GAME_DIR_EGS is actually not a dir but a dat file
         
         data = json.load(datFile)
         codeName = nested_lookup('AppName', data) # returns a list of codeNames
@@ -160,8 +160,8 @@ def getEpicIDs(filePath = 'C:\\ProgramData\\Epic\\UnrealEngineLauncher\\Launcher
         gameAdd(game, codeName, GameStore.EGS)
     
     
-#getEpicIDs()
-#print(GAME_LIST_MASTER)
+# getEpicIDs()
+# print(GAME_LIST_MASTER)
 
 
 '''
@@ -237,7 +237,6 @@ def sync(GAME_LIST_MASTER = GAME_LIST_MASTER):
 
 
 
-
 #---------------------------------------------------------------------------------------------
 # Alternative method to get the appIDs for the games
 # extract the STEAM_ID from that file name
@@ -253,4 +252,17 @@ def sync(GAME_LIST_MASTER = GAME_LIST_MASTER):
 #             STEAM_ID.append(extractedSteamID[0])
 
           
+''' Finding Uplay IDs Old Method -> Depricated '''
 
+# def getUplayIDs(filePath = 'C:\\Program Files (x86)\\Ubisoft\\Ubisoft Game Launcher\\data'):
+#     listOfFiles = os.listdir(filePath)
+
+#     def findIDs():
+#         result = re.findall(r'\d+', str(entry))
+#         try : return result[0]
+#         except : pass
+
+#     for entry in listOfFiles:
+#         uPlayID = findIDs() # '\d' finds any number (a digit)
+#         if uPlayID != None : print(uPlayID)       
+# # getUplayIDs()
