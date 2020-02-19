@@ -2,8 +2,8 @@ from cx_Freeze import setup, Executable
 import sys
 # Dependencies are automatically detected, but it might need fine tuning.
 build_exe_options = {
-    "packages": ["os","steamfiles","nested_lookup","json","src.gameOps","src.usrOps"], 
-    "includes": ["tkinter","os","steamfiles","nested_lookup","json","src.gameOps","src.usrOps"]
+    "packages": ["os","steamfiles","nested_lookup","json","src"], 
+    "includes": ["tkinter","os","steamfiles","nested_lookup","json","src\\gameOps","src\\usrOps"]
 }
 
 # GUI applications require a different base on Windows (the default is for a
