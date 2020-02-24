@@ -8,8 +8,6 @@
 
 **This project is ready for the launchers given below!** 
 
-:warning: Note: You need to manually change Directories defined in ***gameOps.py*** for now.
-
 - [x] Steam
 - [x] Origin
 - [x] Epic Games Launcher
@@ -24,6 +22,15 @@
 As new game launchers came into being it increasingly got annoying to keep track of all the games over different stores/platform. I wanted to make a unified front where users can access all their games, including the one with no launchers. The goal behind this launcher is to be simple, minimilistic and **bloat-free**
 
 ---
+
+## How to install?
+
+ - Git Clone using a terminal or download source.zip from "releases" and unzip
+ - Run the following command
+ > pip install -r requirements.txt
+ - It might error out on "steamfiles" install. To fix this change your pip version to 9.0.X and run the above command again
+ > python -m pip install pip==9.0.3 
+ - app.py will launch Plei
 
 ## How to use it?
 
