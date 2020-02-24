@@ -26,7 +26,7 @@ As new game launchers came into being it increasingly got annoying to keep track
 ## How to install?
 
 #### This installation assumed you have python 3.X installed. [Get python here](https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe)
- - Git Clone using a terminal or download source.zip from "releases" and unzip
+ - Download [Plei](https://github.com/sakshatshinde/Plei/releases/download/1.0/Plei.rar) and extract it to your desired location
  - Run the following command
  > pip install -r requirements.txt
  - It might error out on "steamfiles" install. To fix this change your pip version to 9.0.X and run the above command again
@@ -37,7 +37,7 @@ As new game launchers came into being it increasingly got annoying to keep track
 
 ## How to use it?
 
-- When asked, the user must point the appropriate path to your game libraries. As in when asked for Steam point it to your Steam library.
+- When asked, the user must point the appropriate path to your game libraries. As in when asked for Steam point it to your Steam library (steamapps folder)
 - If you have all your libraries in their default position no need to set them up again. Eg: `C:\Program Files(x86)\Origin Games\`
 -  The above mentioned process maybe fully automated in the future
 - After the initial setup you will be greeted with the installed games, just click on one to play it. Its that simple!
