@@ -21,6 +21,7 @@ __pycache__/
 ### ignore ###
 data/
 build/
+*.rar
 *.plei
 *.log
 *.env
