@@ -26,7 +26,7 @@ As new game launchers came into being it increasingly got annoying to keep track
 ## How to install?
 
 #### This installation assumed you have python 3.X installed. [Get python here](https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe)
- - Git Clone using a terminal or download source.zip from "releases" and unzip
+ - Download **Plei.rar** from "releases" and extract it to your desired location
  - Run the following command
  > pip install -r requirements.txt
  - It might error out on "steamfiles" install. To fix this change your pip version to 9.0.X and run the above command again
