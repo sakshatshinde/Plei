@@ -58,7 +58,11 @@ def plei():
     root.resizable(tk.FALSE, tk.FALSE)
 
     # sets the window in center of the screen
-    root.eval('tk::PlaceWindow %s center' % root.winfo_pathname(root.winfo_id()))
+    try:
+        root.eval('tk::PlaceWindow %s center' % root.winfo_pathname(root.winfo_id()))
+    # fix for some devices
+    except:
+        root.eval('tk::PlaceWindow %s center' % root.winfo_toplevel())
 
     # Title 
     titleLine = tk.Label(  root, 
