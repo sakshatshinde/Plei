@@ -31,6 +31,8 @@ As new game launchers came into being it increasingly got annoying to keep track
  - It might error out on "steamfiles" install. To fix this change your pip version to 9.0.X and run the above command again
  > python -m pip install pip==9.0.3 
  - app.py will launch Plei
+ 
+ ---
 
 ## How to use it?
 
