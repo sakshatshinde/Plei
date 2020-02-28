@@ -222,10 +222,22 @@ def writeData(gameList: dict):
 
 # Syncs the master list to all the installed games
 def sync(GAME_LIST_MASTER = GAME_LIST_MASTER):
-    getOriginIDs()
-    getSteamIDs()
-    getEpicIDs()
-    getUplayIDs()
+    try:
+        getOriginIDs()
+    except:
+        pass
+    try:
+        getSteamIDs()
+    except:
+        pass
+    try:
+        getEpicIDs()
+    except:
+        pass
+    try:
+        getUplayIDs()
+    except:
+        pass
     writeData(GAME_LIST_MASTER)
 
 # sync()    
