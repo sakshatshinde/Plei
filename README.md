@@ -71,10 +71,13 @@ Sadly, Some games need the parent launcher to be running in order to launch them
 
 [![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFJcblxuQT5QbGVpXSAtLT4gU3t7U3RlYW19fVxuQSAtLT4gRXt7RUdTfX1cbkEgLS0-IE97e09yaWdpbn19XG5BIC0tPiBVe3t1UGxheX19XG5BIC0tPiBCe3tiYXR0bGVOZXR9fVxuQSAtLT4gUFtPZmZsaW5lIEdhbWVzXVxuUyAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuRSAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuTyAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuVSAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuQiAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuUCAtLT4gYmluKEJpbmFyeSBFWEUpXG5OIC0uLT4gTChbTGF1bmNoIHRoZSBnYW1lXSlcbmJpbiAtLi0-IEwiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFJcblxuQT5QbGVpXSAtLT4gU3t7U3RlYW19fVxuQSAtLT4gRXt7RUdTfX1cbkEgLS0-IE97e09yaWdpbn19XG5BIC0tPiBVe3t1UGxheX19XG5BIC0tPiBCe3tiYXR0bGVOZXR9fVxuQSAtLT4gUFtPZmZsaW5lIEdhbWVzXVxuUyAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuRSAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuTyAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuVSAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuQiAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuUCAtLT4gYmluKEJpbmFyeSBFWEUpXG5OIC0uLT4gTChbTGF1bmNoIHRoZSBnYW1lXSlcbmJpbiAtLi0-IEwiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ)
 
+---
 
-## Special thanks
-[Arpit Gupta](https://github.com/NarutoOp)
+### Special thanks to
+- [Arpit Gupta](https://github.com/NarutoOp)
 for packaging the application
+
+---
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)
