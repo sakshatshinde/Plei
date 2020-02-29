@@ -23,6 +23,14 @@ As new game launchers came into being it increasingly got annoying to keep track
 
 ---
 
+## How to install?
+
+- Download the latest version from [releases](https://github.com/sakshatshinde/Plei/releases)
+- Run the setup.exe
+- Run Plei.exe (May require admin privileages if installed in C:// drive)
+
+---
+
 ## How to install? (for devs)
 
 #### This installation assumed you have python 3.X installed. [Get python here](https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe)
@@ -62,6 +70,11 @@ Sadly, Some games need the parent launcher to be running in order to launch them
 ## Diagram 
 
 [![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFJcblxuQT5QbGVpXSAtLT4gU3t7U3RlYW19fVxuQSAtLT4gRXt7RUdTfX1cbkEgLS0-IE97e09yaWdpbn19XG5BIC0tPiBVe3t1UGxheX19XG5BIC0tPiBCe3tiYXR0bGVOZXR9fVxuQSAtLT4gUFtPZmZsaW5lIEdhbWVzXVxuUyAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuRSAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuTyAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuVSAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuQiAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuUCAtLT4gYmluKEJpbmFyeSBFWEUpXG5OIC0uLT4gTChbTGF1bmNoIHRoZSBnYW1lXSlcbmJpbiAtLi0-IEwiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFJcblxuQT5QbGVpXSAtLT4gU3t7U3RlYW19fVxuQSAtLT4gRXt7RUdTfX1cbkEgLS0-IE97e09yaWdpbn19XG5BIC0tPiBVe3t1UGxheX19XG5BIC0tPiBCe3tiYXR0bGVOZXR9fVxuQSAtLT4gUFtPZmZsaW5lIEdhbWVzXVxuUyAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuRSAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuTyAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuVSAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuQiAtLT4gTihTdG9yZSBOZXR3b3JrIFByb3RvY29sKVxuUCAtLT4gYmluKEJpbmFyeSBFWEUpXG5OIC0uLT4gTChbTGF1bmNoIHRoZSBnYW1lXSlcbmJpbiAtLi0-IEwiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ)
+
+
+## Special thanks
+[Arpit Gupta](https://github.com/NarutoOp)
+for packaging the application
 
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)
