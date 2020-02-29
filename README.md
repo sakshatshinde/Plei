@@ -31,7 +31,7 @@ As new game launchers came into being it increasingly got annoying to keep track
  > pip install -r requirements.txt
  - It might error out on "steamfiles" install. To fix this change your pip version to 9.0.X and run the above command again
  > python -m pip install pip==9.0.3 
- - app.py will launch Plei
+ - app.pyw will launch Plei
  
  ---
 
