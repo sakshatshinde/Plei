@@ -13,7 +13,6 @@
 - [x] Epic Games Launcher
 - [x] Uplay
 - [ ] Standalone Games
-- [ ] Battlenet
 
 ---
 
