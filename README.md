@@ -14,7 +14,7 @@
 - [x] Origin
 - [x] Epic Games Launcher
 - [x] Uplay
-- [ ] Standalone Games
+- [ ] Standalone Games (Not gonna do this anytime soon :c)
 
 ---
 
