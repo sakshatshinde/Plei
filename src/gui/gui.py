@@ -155,7 +155,7 @@ def plei():
 
     # Footer
     footer = tk.Label(  root, 
-                    text = 'by ScreX ',
+                    text = 'Have Fun ',
                     fg = '#039be5',
                     background = BG_VAL,
                     font = ('Helvetica', 14, 'bold'),
