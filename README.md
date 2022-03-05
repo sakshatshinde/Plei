@@ -25,6 +25,15 @@ As new game launchers came into being it increasingly got annoying to keep track
 
 ## How to install? 
 
+#### This includes an executable, just unzip it.
+ - Download [Plei](https://github.com/sakshatshinde/Plei/releases/download/1.3/Plei.zip) and extract it to your desired location
+ - Unzip Plei.zip
+ - Run Plei.exe
+ 
+---
+
+## How to install? (For Devs)
+
 #### This installation assumed you have python 3.X installed. [Get python here](https://www.python.org/ftp/python/3.8.1/python-3.8.1-amd64.exe)
  - Download [Plei](https://github.com/sakshatshinde/Plei/archive/master.zip) and extract it to your desired location
  - Run the following command
@@ -34,7 +43,8 @@ As new game launchers came into being it increasingly got annoying to keep track
  - app.pyw will launch Plei
  - Rename app.pyw to app.py to see the console message for logging/testing
  
- ---
+---
+
 
 ## How to use it?
 
