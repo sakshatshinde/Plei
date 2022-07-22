@@ -66,11 +66,5 @@ Sadly, Some games need the parent launcher to be running in order to launch them
 
 ---
 
-### Special thanks to
-- [Arpit Gupta](https://github.com/NarutoOp)
-for packaging the application
-
----
-
 ## License
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)
