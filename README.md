@@ -2,11 +2,12 @@
 # Plei 
 **A game launcher with no bloat**
 
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
-
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/) <br/>
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)
 
-⚠️⚠️ **Install might break due to:** https://github.com/leovp/steamfiles/pull/20 ⚠️⚠️
+> **Warning** <br />
+> **Install might break due to:** https://github.com/leovp/steamfiles/pull/20  <br />
+
 
 **This project is ready for the launchers given below!** 
 
