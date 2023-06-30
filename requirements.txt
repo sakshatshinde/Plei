@@ -1,6 +1,6 @@
 nested-lookup==0.2.19
 pip-tools==4.3.0
-pipreqs==0.4.9
+pipreqs==0.4.12
 python-dotenv==0.10.3
 six==1.12.0
 steamfiles==0.1.4
